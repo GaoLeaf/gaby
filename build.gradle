@@ -1,0 +1,31 @@
+ext {
+    springBootVersion = '2.3.2.RELEASE'
+    junitVersion = '4.13'
+}
+
+allprojects {
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        maven { url "http://maven.shfft.cc/repository/maven-public/" }
+    }
+
+    dependencies {
+        testCompile "junit:junit:$junitVersion"
+    }
+
+}
+
+project(":smile-admin") {
+
+    dependencies {
+
+        compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+
+        testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+
+    }
+}
