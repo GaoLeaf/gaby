@@ -1,6 +1,6 @@
 package com.smile.admin.boot;
 
-import org.springframework.context.annotation.ComponentScan;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -8,8 +8,11 @@ import org.springframework.context.annotation.Configuration;
  * @date 2020/12/31
  * @description:
  */
-@ComponentScan("com.smile.admin.mapper")
+@MapperScan("com.smile.admin.mapper.*")
 
 @Configuration
 public class ContextConfiguration {
+
+
+
 }

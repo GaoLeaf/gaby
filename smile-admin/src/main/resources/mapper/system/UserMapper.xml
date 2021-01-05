@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper  namespace="com.smile.admin.mapper.system.UserMapper">
+
+    <resultMap id="userResultMap" type="User">
+        <id property="id" column="id"/>
+        <result property="isAccNonExpired" column="is_acc_non_expired"/>
+        <result property="isAccNonLocked" column="is_acc_non_locked"/>
+    </resultMap>
+    
+    <sql id="userBaseSql">
+        id,ou_id,family_id,username,nickname,password,roles,sex,birthday,email,mobile,phone,job_number,address,
+        is_acc_non_expired,is_acc_non_locked,status,create_time,latest_update_time,latest_access_time,memo
+    </sql>
+    
+    <select id="getUser" resultType="User">
+      SELECT * FROM t_user
+    </select>
+    
+    <select id="findUserByUsername" parameterType="String" resultMap="userResultMap">
+        SELECT <include refid="userBaseSql"/>
+        FROM t_user
+        where username = #{username}
+    </select>
+
+</mapper>
