@@ -17,8 +17,11 @@ public class IndexController {
         return "login";
     }
 
-    @RequestMapping("index")
+    @GetMapping({"index", "/"})
     public String index() {
+
+        //TODO menu
+
         return "index";
     }
 

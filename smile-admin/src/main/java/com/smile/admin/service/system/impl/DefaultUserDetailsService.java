@@ -38,6 +38,8 @@ public class DefaultUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException(username); // 用户不存在
         }
 
+        //TODO 获取用户角色
+
         return new SecurityUser(users.get(0));
     }
 
