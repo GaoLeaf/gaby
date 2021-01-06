@@ -7,7 +7,11 @@ spring:
     username: gaowj
     password: 123456
   application:
-    name: smile-admin
+    name: smile-admin # 项目名称
+  thymeleaf:
+    cache: true # 是否启用缓存模板
+    mode: HTML # 应用于模板的模板模式
+    encoding: UTF-8 # 编码格式
 
 ## mybatis
 mybatis:
