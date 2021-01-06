@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smile.admin.mapper.system.UserMapper">
+  <resultMap id="BaseResultMap" type="com.smile.admin.bean.domain.User">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="ou_id" jdbcType="INTEGER" property="ouId" />
+    <result column="family_id" jdbcType="INTEGER" property="familyId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="roles" jdbcType="VARCHAR" property="roles" />
+    <result column="sex" jdbcType="CHAR" property="sex" />
+    <result column="birthday" jdbcType="CHAR" property="birthday" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="job_number" jdbcType="VARCHAR" property="jobNumber" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="is_acc_non_expired" jdbcType="BIT" property="isAccNonExpired" />
+    <result column="is_acc_non_locked" jdbcType="BIT" property="isAccNonLocked" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="latest_update_time" jdbcType="TIMESTAMP" property="latestUpdateTime" />
+    <result column="latest_access_time" jdbcType="TIMESTAMP" property="latestAccessTime" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, ou_id, family_id, username, nickname, password, roles, sex, birthday, email, 
+    mobile, phone, job_number, address, is_acc_non_expired, is_acc_non_locked, status, 
+    create_time, latest_update_time, latest_access_time, memo
+  </sql>
+  <select id="selectByExample" parameterType="com.smile.admin.bean.domain.UserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.smile.admin.bean.domain.UserExample">
+    delete from t_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.smile.admin.bean.domain.User">
+    insert into t_user (id, ou_id, family_id, 
+      username, nickname, password, 
+      roles, sex, birthday, email, 
+      mobile, phone, job_number, 
+      address, is_acc_non_expired, is_acc_non_locked, 
+      status, create_time, latest_update_time, 
+      latest_access_time, memo)
+    values (#{id,jdbcType=INTEGER}, #{ouId,jdbcType=INTEGER}, #{familyId,jdbcType=INTEGER}, 
+      #{username,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{roles,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{birthday,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{jobNumber,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{isAccNonExpired,jdbcType=BIT}, #{isAccNonLocked,jdbcType=BIT}, 
+      #{status,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{latestUpdateTime,jdbcType=TIMESTAMP}, 
+      #{latestAccessTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smile.admin.bean.domain.User">
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ouId != null">
+        ou_id,
+      </if>
+      <if test="familyId != null">
+        family_id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="roles != null">
+        roles,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="jobNumber != null">
+        job_number,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="isAccNonExpired != null">
+        is_acc_non_expired,
+      </if>
+      <if test="isAccNonLocked != null">
+        is_acc_non_locked,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="latestUpdateTime != null">
+        latest_update_time,
+      </if>
+      <if test="latestAccessTime != null">
+        latest_access_time,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ouId != null">
+        #{ouId,jdbcType=INTEGER},
+      </if>
+      <if test="familyId != null">
+        #{familyId,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="roles != null">
+        #{roles,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=CHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="jobNumber != null">
+        #{jobNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="isAccNonExpired != null">
+        #{isAccNonExpired,jdbcType=BIT},
+      </if>
+      <if test="isAccNonLocked != null">
+        #{isAccNonLocked,jdbcType=BIT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="latestUpdateTime != null">
+        #{latestUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="latestAccessTime != null">
+        #{latestAccessTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.smile.admin.bean.domain.UserExample" resultType="java.lang.Long">
+    select count(*) from t_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_user
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.ouId != null">
+        ou_id = #{record.ouId,jdbcType=INTEGER},
+      </if>
+      <if test="record.familyId != null">
+        family_id = #{record.familyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickname != null">
+        nickname = #{record.nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roles != null">
+        roles = #{record.roles,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null">
+        sex = #{record.sex,jdbcType=CHAR},
+      </if>
+      <if test="record.birthday != null">
+        birthday = #{record.birthday,jdbcType=CHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobile != null">
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null">
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobNumber != null">
+        job_number = #{record.jobNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isAccNonExpired != null">
+        is_acc_non_expired = #{record.isAccNonExpired,jdbcType=BIT},
+      </if>
+      <if test="record.isAccNonLocked != null">
+        is_acc_non_locked = #{record.isAccNonLocked,jdbcType=BIT},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.latestUpdateTime != null">
+        latest_update_time = #{record.latestUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.latestAccessTime != null">
+        latest_access_time = #{record.latestAccessTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.memo != null">
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_user
+    set id = #{record.id,jdbcType=INTEGER},
+      ou_id = #{record.ouId,jdbcType=INTEGER},
+      family_id = #{record.familyId,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
+      nickname = #{record.nickname,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      roles = #{record.roles,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=CHAR},
+      birthday = #{record.birthday,jdbcType=CHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      job_number = #{record.jobNumber,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      is_acc_non_expired = #{record.isAccNonExpired,jdbcType=BIT},
+      is_acc_non_locked = #{record.isAccNonLocked,jdbcType=BIT},
+      status = #{record.status,jdbcType=CHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      latest_update_time = #{record.latestUpdateTime,jdbcType=TIMESTAMP},
+      latest_access_time = #{record.latestAccessTime,jdbcType=TIMESTAMP},
+      memo = #{record.memo,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.smile.admin.bean.domain.UserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

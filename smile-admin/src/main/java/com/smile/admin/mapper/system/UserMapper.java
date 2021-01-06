@@ -1,16 +1,25 @@
 package com.smile.admin.mapper.system;
 
 import com.smile.admin.bean.domain.User;
-
+import com.smile.admin.bean.domain.UserExample;
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
 
-/**
- * @author gaowenjin
- * @date 2021/1/5
- * @description:
- */
 public interface UserMapper {
+    long countByExample(UserExample example);
 
-    List<User> getUser();
+    int deleteByExample(UserExample example);
 
+    int insert(User record);
+
+    int insertSelective(User record);
+
+    List<User> selectByExampleWithRowbounds(UserExample example, RowBounds rowBounds);
+
+    List<User> selectByExample(UserExample example);
+
+    int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
+
+    int updateByExample(@Param("record") User record, @Param("example") UserExample example);
 }

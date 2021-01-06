@@ -1,32 +1,14 @@
 package com.smile.admin.bean.domain;
 
+import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
-/**
- * @Title:
- * @Description: 用户
- * @Author: leaf
- * @Since: 2019/3/20 14:49
- * @Version:1.1
- */
-public class User {
+public class User implements Serializable {
+    private Integer id;
 
-	private static final long serialVersionUID = 1L;
+    private Integer ouId;
 
-	private Long id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    private Long ouId;
-
-    private String familyId;
+    private Integer familyId;
 
     private String username;
 
@@ -34,7 +16,7 @@ public class User {
 
     private String password;
 
-    private Set<String> roles;
+    private String roles;
 
     private String sex;
 
@@ -50,13 +32,11 @@ public class User {
 
     private String address;
 
-    //用户帐号是否未过期，过期帐号无法登录系统
     private Boolean isAccNonExpired;
 
-    //用户帐号是否未被锁定，被锁定的用户无法使用系统
     private Boolean isAccNonLocked;
 
-//    private Status status;
+    private String status;
 
     private Date createTime;
 
@@ -66,19 +46,29 @@ public class User {
 
     private String memo;
 
-    public Long getOuId() {
+    private static final long serialVersionUID = 1L;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getOuId() {
         return ouId;
     }
 
-    public void setOuId(Long ouId) {
+    public void setOuId(Integer ouId) {
         this.ouId = ouId;
     }
 
-    public String getFamilyId() {
+    public Integer getFamilyId() {
         return familyId;
     }
 
-    public void setFamilyId(String familyId) {
+    public void setFamilyId(Integer familyId) {
         this.familyId = familyId;
     }
 
@@ -87,7 +77,7 @@ public class User {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username == null ? null : username.trim();
     }
 
     public String getNickname() {
@@ -95,7 +85,7 @@ public class User {
     }
 
     public void setNickname(String nickname) {
-        this.nickname = nickname;
+        this.nickname = nickname == null ? null : nickname.trim();
     }
 
     public String getPassword() {
@@ -103,15 +93,15 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password == null ? null : password.trim();
     }
 
-    public Set<String> getRoles() {
+    public String getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<String> roles) {
-        this.roles = roles;
+    public void setRoles(String roles) {
+        this.roles = roles == null ? null : roles.trim();
     }
 
     public String getSex() {
@@ -119,7 +109,7 @@ public class User {
     }
 
     public void setSex(String sex) {
-        this.sex = sex;
+        this.sex = sex == null ? null : sex.trim();
     }
 
     public String getBirthday() {
@@ -127,7 +117,7 @@ public class User {
     }
 
     public void setBirthday(String birthday) {
-        this.birthday = birthday;
+        this.birthday = birthday == null ? null : birthday.trim();
     }
 
     public String getEmail() {
@@ -135,7 +125,7 @@ public class User {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email == null ? null : email.trim();
     }
 
     public String getMobile() {
@@ -143,7 +133,7 @@ public class User {
     }
 
     public void setMobile(String mobile) {
-        this.mobile = mobile;
+        this.mobile = mobile == null ? null : mobile.trim();
     }
 
     public String getPhone() {
@@ -151,7 +141,7 @@ public class User {
     }
 
     public void setPhone(String phone) {
-        this.phone = phone;
+        this.phone = phone == null ? null : phone.trim();
     }
 
     public String getJobNumber() {
@@ -159,7 +149,7 @@ public class User {
     }
 
     public void setJobNumber(String jobNumber) {
-        this.jobNumber = jobNumber;
+        this.jobNumber = jobNumber == null ? null : jobNumber.trim();
     }
 
     public String getAddress() {
@@ -167,23 +157,31 @@ public class User {
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        this.address = address == null ? null : address.trim();
     }
 
-    public Boolean getAccNonExpired() {
+    public Boolean getIsAccNonExpired() {
         return isAccNonExpired;
     }
 
-    public void setAccNonExpired(Boolean accNonExpired) {
-        isAccNonExpired = accNonExpired;
+    public void setIsAccNonExpired(Boolean isAccNonExpired) {
+        this.isAccNonExpired = isAccNonExpired;
     }
 
-    public Boolean getAccNonLocked() {
+    public Boolean getIsAccNonLocked() {
         return isAccNonLocked;
     }
 
-    public void setAccNonLocked(Boolean accNonLocked) {
-        isAccNonLocked = accNonLocked;
+    public void setIsAccNonLocked(Boolean isAccNonLocked) {
+        this.isAccNonLocked = isAccNonLocked;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
     }
 
     public Date getCreateTime() {
@@ -215,6 +213,6 @@ public class User {
     }
 
     public void setMemo(String memo) {
-        this.memo = memo;
+        this.memo = memo == null ? null : memo.trim();
     }
 }

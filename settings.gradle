@@ -1,3 +1,4 @@
 rootProject.name = 'smile'
 include 'smile-admin'
+include 'smile-tool'
 

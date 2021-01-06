@@ -2,6 +2,7 @@ ext {
     springBootVersion = '2.3.2.RELEASE'
     mybatisSpringVersion = '2.1.2'
     mysqlVersion = '8.0.13'
+    mybatisGeneratorVersion = '1.4.0'
     junitVersion = '4.13'
 }
 
@@ -26,10 +27,22 @@ project(":smile-admin") {
     dependencies {
 
         compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+        compile "org.springframework.boot:spring-boot-starter-thymeleaf:$springBootVersion"
         compile "org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatisSpringVersion"
         compile "mysql:mysql-connector-java:$mysqlVersion"
 
         testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
 
     }
+}
+
+project(":smile-tool") {
+
+    dependencies {
+
+        compile "org.mybatis.generator:mybatis-generator-core:$mybatisGeneratorVersion"
+        compile "mysql:mysql-connector-java:$mysqlVersion"
+
+    }
+
 }
