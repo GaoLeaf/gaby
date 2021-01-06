@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<springProperty scope="context" name="projectName" source="spring.application.name"/>
+
+	<property name="CONSOLE_LOG_PATTERN" value="[%-5p][${projectName}] [%d{yyyy-MM-dd HH:mm:ss.SSS}] [类:%c{1}:函数:%M:行:%L] [内容:%m]%n" />
+
+	<!-- 控制台输出 -->
+	<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+	</root>
+	
+	<logger name="com.leaf" level="DEBUG"/>
+	<logger name="org.spring.springboot.dao" level="DEBUG"/>
+
+</configuration>

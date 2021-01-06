@@ -1,11 +1,15 @@
+
 spring:
+  ## 数据源
   datasource:
     url: jdbc:mysql://localhost:3306/leaf?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: gaowj
     password: 123456
+  application:
+    name: smile-admin
 
 ## mybatis
 mybatis:
-  mapper-locations: classpath:mapper/**/*Mapper.xml
+  mapper-locations: classpath:com/smile/admin/mapper/**/*Mapper.xml
   type-aliases-package: com.smile.admin.bean.domain
