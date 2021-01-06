@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * @description:
  */
 @ComponentScan("com.smile.admin.controller")
+@ComponentScan("com.smile.admin.security")
 
 @Configuration
 public class MvcConfiguration {

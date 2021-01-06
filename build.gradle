@@ -28,6 +28,7 @@ project(":smile-admin") {
 
         compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
         compile "org.springframework.boot:spring-boot-starter-thymeleaf:$springBootVersion"
+        compile "org.springframework.boot:spring-boot-starter-security:$springBootVersion"
         compile "org.mybatis.spring.boot:mybatis-spring-boot-starter:$mybatisSpringVersion"
         compile "mysql:mysql-connector-java:$mysqlVersion"
 

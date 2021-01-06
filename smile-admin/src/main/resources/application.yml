@@ -17,3 +17,6 @@ spring:
 mybatis:
   mapper-locations: classpath:com/smile/admin/mapper/**/*Mapper.xml
   type-aliases-package: com.smile.admin.bean.domain
+
+server:
+  port: 80
