@@ -1,9 +1,8 @@
-package com.smile.admin.mapper;
+package com.smile.admin.service;
 
-import com.smile.admin.bean.domain.User;
-import com.smile.admin.bean.domain.UserExample;
-import com.smile.admin.mapper.system.UserMapper;
+import com.smile.admin.bean.domain.Menu;
 import com.smile.admin.mock.MockApplication;
+import com.smile.admin.service.system.MenuService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -16,29 +15,24 @@ import java.util.List;
 
 /**
  * @author gaowenjin
- * @date 2021/1/5
+ * @date 2021/1/7
  * @description:
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MockApplication.class)
-public class UserMapperTest {
+public class MenuServiceTest {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    private UserMapper userMapper;
+    private MenuService menuService;
 
     @Test
-    public void testGetUser() {
+    public void testGetMenuListByRole() {
 
-        UserExample example = new UserExample();
+        List<Menu> menus = menuService.getMenuListByRole(null);
 
-        example.createCriteria().andUsernameEqualTo("leaf");
-
-        List<User> users = userMapper.selectByExample(example);
-
-        logger.info("用户总数量: {}", users.size());
-
+        logger.info("菜单数量 {}", menus.size());
     }
 
 }

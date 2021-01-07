@@ -13,7 +13,28 @@
 
   <!-- 左侧导航栏开始 -->
   <nav class="navbar-default navbar-static-side">
+    <div class="nav-close">
+      <i class="fa fa-times-circle"></i>
+    </div>
+    <div class="sidebar-collapse">
+      <ul class="nav" id="side-menu">
+        <li class="nav-header"></li>
 
+        <li th:each="parentMenu : ${menus}">
+          <a href="#">
+            <i class="fa fa-gear"></i>
+            <span class="nav-label" th:utext="${parentMenu.menuName}">一级菜单</span>
+            <span class="fa arrow"></span>
+          </a>
+          <ul class="nav nav-second-level collapse" >
+            <li th:each="childMenu : ${parentMenu.childMenus}">
+              <a class="menuItem" th:href="@{${childMenu.menuUrl}}" th:utext="${childMenu.menuName}">二级菜单</a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
   </nav>
   <!-- 左侧导航栏结束 -->
 
@@ -24,6 +45,12 @@
   <!--右侧部分结束-->
 
 </div>
+
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+<script th:src="@{/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+<script th:src="@{/js/index.js}"></script>
 
 </body>
 </html>

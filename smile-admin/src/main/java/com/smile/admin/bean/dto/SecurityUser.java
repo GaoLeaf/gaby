@@ -19,7 +19,7 @@ public class SecurityUser extends User implements UserDetails {
         if (user != null) {
             this.setId(user.getId());
             this.setUsername(user.getUsername());
-            this.setUsername(user.getUsername());
+            this.setNickname(user.getNickname());
             this.setPassword(user.getPassword());
             this.setRoles(user.getRoles());
             this.setIsAccNonExpired(user.getIsAccNonExpired());
@@ -27,16 +27,25 @@ public class SecurityUser extends User implements UserDetails {
         }
     }
 
+    /**
+     * 已授予的权限列表
+     */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
     }
 
+    /**
+     * 账号是否过期
+     */
     @Override
     public boolean isAccountNonExpired() {
         return this.getIsAccNonExpired();
     }
 
+    /**
+     * 账号是否锁定
+     */
     @Override
     public boolean isAccountNonLocked() {
         return this.getIsAccNonLocked();
