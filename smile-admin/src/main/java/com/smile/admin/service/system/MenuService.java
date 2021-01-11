@@ -12,6 +12,7 @@ import java.util.Set;
  */
 public interface MenuService {
 
+    // 获取角色已有菜单
     List<Menu> getMenuListByRole(Set<Integer> roleIds);
 
 }
