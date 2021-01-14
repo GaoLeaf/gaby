@@ -50,4 +50,10 @@ public class IndexController {
         return "index";
     }
 
+    // 主界面
+    @GetMapping("main")
+    public String main() {
+        return "main";
+    }
+
 }

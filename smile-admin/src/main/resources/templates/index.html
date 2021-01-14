@@ -40,7 +40,36 @@
 
   <!--右侧部分开始-->
   <div id="page-wrapper" class="gray-bg dashbard-1">
+    <div class="row border-bottom">
 
+    </div>
+    <div class="row content-tabs">
+      <button class="roll-nav roll-left tabLeft">
+        <i class="fa fa-backward"></i>
+      </button>
+      <nav class="page-tabs menuTabs">
+        <div class="page-tabs-content">
+          <a href="javascript:;" class="active menuTab" data-id="/main">首页</a>
+        </div>
+      </nav>
+      <button class="roll-nav roll-right tabRight">
+        <i class="fa fa-forward"></i>
+      </button>
+      <div class="btn-group roll-nav roll-right">
+        <button class="dropdown J_tabClose" data-toggle="dropdown">页签操作<span class="caret"></span></button>
+        <ul role="menu" class="dropdown-menu dropdown-menu-right">
+          <li><a class="tabCloseCurrent" href="javascript:void();">关闭当前</a></li>
+          <li><a class="tabCloseOther" href="javascript:void();">关闭其他</a></li>
+          <li><a class="tabCloseAll" href="javascript:void();">全部关闭</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="row mainContent" id="content-main">
+      <iframe class="leaf_iframe" name="iframe0" width="100%" height="100%" data-id="/main" th:src="@{/main}" frameborder="0" seamless></iframe>
+    </div>
+    <div class="footer">
+      <div class="pull-right">© [[${copyrightYear}]] SMILE Copyright </div>
+    </div>
   </div>
   <!--右侧部分结束-->
 
