@@ -45,7 +45,7 @@ public class IndexController {
         set.add(1);
 
         //TODO menu
-        model.addAttribute("menus", menuService.getMenuListByRole(set));
+        model.addAttribute("menus", menuService.getMenuListByRole(set, true));
 
         return "index";
     }

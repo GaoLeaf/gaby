@@ -30,12 +30,12 @@ public class MenuController {
         return "system/menu-list";
     }
 
-    @PostMapping("data")
+    @GetMapping("data")
     @ResponseBody
     public List<Menu> data() {
         Set<Integer> set = new HashSet<>();
         set.add(1);
-        return menuService.getMenuListByRole(set);
+        return menuService.getMenuListByRole(set, false);
     }
 
 }

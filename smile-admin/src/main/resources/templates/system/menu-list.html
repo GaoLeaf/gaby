@@ -13,7 +13,7 @@
               <input type="text" name="menuName"/>
             </li>
             <li>
-              <a class="btn btn-primary btn-rounded btn-sm" onclick="$.treeTable.search()">
+              <a class="btn btn-primary btn-rounded btn-sm" onclick="$.treetable.search()">
                 <i class="fa fa-search"></i>&nbsp;搜索
               </a>
               <a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()">
@@ -32,7 +32,7 @@
     </div>
 
     <div class="col-sm-12 select-table table-striped">
-      <table id="bootstrap-table" data-mobile-responsive="true"></table>
+      <table id="bootstrap-tree-table" data-mobile-responsive="true"></table>
     </div>
 
   </div>
@@ -48,12 +48,12 @@
     $(function () {
         var options = {
             modalName: '菜单',
+            code: "id",
+            parentCode: "parentId",
             url: prefix + 'data',
             createUrl: prefix + 'add/{id}',
             updateUrl: prefix + 'edit/{id}',
             columns: [{
-                checkbox: true
-            },{
                 field: 'menuName',
                 title: '菜单名称'
             },{
@@ -67,10 +67,18 @@
                 title: '排序'
             },{
                 field: 'status',
-                title: '状态'
+                title: '状态',
+                formatter: function (value, item, index) {
+                    if (item.status == '01') {
+                        return '<span class="label label-success">有效</span>';
+                    }
+                    if (item.status == '00') {
+                        return '<span class="label label-warning">无效</span>';
+                    }
+                }
             }]
         };
-        $.table.init(options);
+        $.treetable.init(options);
     });
 
 </script>

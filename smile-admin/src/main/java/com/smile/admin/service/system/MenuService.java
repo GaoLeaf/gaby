@@ -12,7 +12,12 @@ import java.util.Set;
  */
 public interface MenuService {
 
-    // 获取角色已有菜单
-    List<Menu> getMenuListByRole(Set<Integer> roleIds);
+    /**
+     * 获取角色已有菜单
+      * @param roleIds
+     * @param needTree 是否需要树形化
+     * @return
+     */
+    List<Menu> getMenuListByRole(Set<Integer> roleIds, boolean needTree);
 
 }

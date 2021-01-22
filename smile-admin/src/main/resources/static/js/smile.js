@@ -21,6 +21,21 @@
             }
         },
 
+        // 表格树封装处理
+        treetable: {
+            init: function (options) {
+                $("#bootstrap-tree-table").bootstrapTreeTable({
+                    url: options.url,           // 请求url
+                    // method: 'POST',             // 请求方式
+                    code : options.id,          // 选取记录返回的值,用于设置父子关系
+                    parentCode : options.parentCode, // 用于设置父子关系
+                    ajaxParams: {
+                    },            // 请求数据的ajax的data属性
+                    columns: options.columns    // 显示列信息
+                });
+            }
+        },
+
         // 弹出框封装处理
         modal: {
 

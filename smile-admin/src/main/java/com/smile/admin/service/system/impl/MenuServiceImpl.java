@@ -27,7 +27,7 @@ public class MenuServiceImpl implements MenuService {
     @Autowired
     private RoleMenuMapper roleMenuMapper;
 
-    public List<Menu> getMenuListByRole(Set<Integer> roleIds) {
+    public List<Menu> getMenuListByRole(Set<Integer> roleIds, boolean needTree) {
 
         // 查询角色菜单集合
         List<Integer> menuIds = roleMenuMapper.selectMemuIdsByRoleIds(roleIds);
@@ -43,7 +43,12 @@ public class MenuServiceImpl implements MenuService {
 
         List<Menu> menus = menuMapper.selectByExample(menuExample);
 
-        return TreeUtils.getParentMenus(menus);
+        // 是否需要树形化
+        if (needTree) {
+            return TreeUtils.getParentMenus(menus);
+        } else {
+            return menus;
+        }
     }
 
 }
