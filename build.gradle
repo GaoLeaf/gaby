@@ -13,7 +13,7 @@ allprojects {
     targetCompatibility = 1.8
 
     repositories {
-        maven { url "http://maven.shfft.cc/repository/maven-public/" }
+        maven { url "http://maven.aliyun.cc/repository/maven-public/" }
     }
 
     dependencies {
