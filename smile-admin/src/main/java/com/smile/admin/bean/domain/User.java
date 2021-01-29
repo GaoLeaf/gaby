@@ -2,6 +2,7 @@ package com.smile.admin.bean.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 public class User implements Serializable {
     private Integer id;
@@ -16,7 +17,7 @@ public class User implements Serializable {
 
     private String password;
 
-    private String roles;
+    private Set<String> roles;
 
     private String sex;
 
@@ -96,12 +97,12 @@ public class User implements Serializable {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getRoles() {
+    public Set<String> getRoles() {
         return roles;
     }
 
-    public void setRoles(String roles) {
-        this.roles = roles == null ? null : roles.trim();
+    public void setRoles(Set<String> roles) {
+        this.roles = roles;
     }
 
     public String getSex() {
@@ -214,5 +215,32 @@ public class User implements Serializable {
 
     public void setMemo(String memo) {
         this.memo = memo == null ? null : memo.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", ouId=" + ouId +
+                ", familyId=" + familyId +
+                ", username='" + username + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", password='" + password + '\'' +
+                ", roles='" + roles + '\'' +
+                ", sex='" + sex + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", phone='" + phone + '\'' +
+                ", jobNumber='" + jobNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", isAccNonExpired=" + isAccNonExpired +
+                ", isAccNonLocked=" + isAccNonLocked +
+                ", status='" + status + '\'' +
+                ", createTime=" + createTime +
+                ", latestUpdateTime=" + latestUpdateTime +
+                ", latestAccessTime=" + latestAccessTime +
+                ", memo='" + memo + '\'' +
+                '}';
     }
 }

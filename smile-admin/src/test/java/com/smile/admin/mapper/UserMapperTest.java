@@ -37,6 +37,8 @@ public class UserMapperTest {
 
         List<User> users = userMapper.selectByExample(example);
 
+        logger.info("用户: {}", users.get(0));
+
         logger.info("用户总数量: {}", users.size());
 
     }

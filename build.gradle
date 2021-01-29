@@ -3,6 +3,7 @@ ext {
     mybatisSpringVersion = '2.1.2'
     mysqlVersion = '8.0.13'
     mybatisGeneratorVersion = '1.4.0'
+    hessianVersion = '4.0.60'
     junitVersion = '4.13'
 }
 
@@ -43,6 +44,27 @@ project(":smile-tool") {
 
         compile "org.mybatis.generator:mybatis-generator-core:$mybatisGeneratorVersion"
         compile "mysql:mysql-connector-java:$mysqlVersion"
+
+    }
+
+}
+
+project(":smile-test") {
+
+    dependencies {
+
+        compile "com.caucho:hessian:$hessianVersion"
+        compile "junit:junit:$junitVersion"
+
+    }
+
+}
+
+project(":smile-jdbc") {
+
+    dependencies {
+
+        compile "org.mybatis:mybatis:3.5.4"
 
     }
 

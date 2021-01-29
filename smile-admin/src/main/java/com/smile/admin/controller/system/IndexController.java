@@ -38,7 +38,7 @@ public class IndexController {
 
         if (principal instanceof UserDetails) {
             SecurityUser user = (SecurityUser) principal;
-            String roles = user.getRoles();
+            Set<String> roles = user.getRoles();
         }
 
         Set<Integer> set = new HashSet<>();

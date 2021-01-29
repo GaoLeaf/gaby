@@ -30,7 +30,7 @@ public class MenuServiceTest {
     @Test
     public void testGetMenuListByRole() {
 
-        List<Menu> menus = menuService.getMenuListByRole(null);
+        List<Menu> menus = menuService.getMenuListByRole(null, true);
 
         logger.info("菜单数量 {}", menus.size());
     }
