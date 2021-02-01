@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Role implements Serializable {
-    private Integer roleId;
+    private String roleId;
 
     private String roleName;
 
@@ -12,13 +12,13 @@ public class Role implements Serializable {
 
     private String status;
 
-    private Integer createUserId;
+    private String createUserId;
 
     private String createUserName;
 
     private Date createTime;
 
-    private Integer modifyUserId;
+    private String modifyUserId;
 
     private String modifyUserName;
 
@@ -26,12 +26,12 @@ public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getRoleId() {
+    public String getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+    public void setRoleId(String roleId) {
+        this.roleId = roleId == null ? null : roleId.trim();
     }
 
     public String getRoleName() {
@@ -58,12 +58,12 @@ public class Role implements Serializable {
         this.status = status == null ? null : status.trim();
     }
 
-    public Integer getCreateUserId() {
+    public String getCreateUserId() {
         return createUserId;
     }
 
-    public void setCreateUserId(Integer createUserId) {
-        this.createUserId = createUserId;
+    public void setCreateUserId(String createUserId) {
+        this.createUserId = createUserId == null ? null : createUserId.trim();
     }
 
     public String getCreateUserName() {
@@ -82,12 +82,12 @@ public class Role implements Serializable {
         this.createTime = createTime;
     }
 
-    public Integer getModifyUserId() {
+    public String getModifyUserId() {
         return modifyUserId;
     }
 
-    public void setModifyUserId(Integer modifyUserId) {
-        this.modifyUserId = modifyUserId;
+    public void setModifyUserId(String modifyUserId) {
+        this.modifyUserId = modifyUserId == null ? null : modifyUserId.trim();
     }
 
     public String getModifyUserName() {

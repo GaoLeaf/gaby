@@ -5,11 +5,11 @@ import java.util.Date;
 import java.util.Set;
 
 public class User implements Serializable {
-    private Integer id;
+    private String userId;
 
-    private Integer ouId;
+    private String ouId;
 
-    private Integer familyId;
+    private String familyId;
 
     private String username;
 
@@ -49,28 +49,28 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
     }
 
-    public Integer getOuId() {
+    public String getOuId() {
         return ouId;
     }
 
-    public void setOuId(Integer ouId) {
-        this.ouId = ouId;
+    public void setOuId(String ouId) {
+        this.ouId = ouId == null ? null : ouId.trim();
     }
 
-    public Integer getFamilyId() {
+    public String getFamilyId() {
         return familyId;
     }
 
-    public void setFamilyId(Integer familyId) {
-        this.familyId = familyId;
+    public void setFamilyId(String familyId) {
+        this.familyId = familyId == null ? null : familyId.trim();
     }
 
     public String getUsername() {
@@ -102,7 +102,7 @@ public class User implements Serializable {
     }
 
     public void setRoles(Set<String> roles) {
-        this.roles = roles;
+        this.roles = roles == null ? null : roles;
     }
 
     public String getSex() {
@@ -215,32 +215,5 @@ public class User implements Serializable {
 
     public void setMemo(String memo) {
         this.memo = memo == null ? null : memo.trim();
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", ouId=" + ouId +
-                ", familyId=" + familyId +
-                ", username='" + username + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", password='" + password + '\'' +
-                ", roles='" + roles + '\'' +
-                ", sex='" + sex + '\'' +
-                ", birthday='" + birthday + '\'' +
-                ", email='" + email + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", phone='" + phone + '\'' +
-                ", jobNumber='" + jobNumber + '\'' +
-                ", address='" + address + '\'' +
-                ", isAccNonExpired=" + isAccNonExpired +
-                ", isAccNonLocked=" + isAccNonLocked +
-                ", status='" + status + '\'' +
-                ", createTime=" + createTime +
-                ", latestUpdateTime=" + latestUpdateTime +
-                ", latestAccessTime=" + latestAccessTime +
-                ", memo='" + memo + '\'' +
-                '}';
     }
 }

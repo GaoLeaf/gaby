@@ -17,7 +17,7 @@ public class SecurityUser extends User implements UserDetails {
 
     public SecurityUser(User user) {
         if (user != null) {
-            this.setId(user.getId());
+            this.setUserId(user.getUserId());
             this.setUsername(user.getUsername());
             this.setNickname(user.getNickname());
             this.setPassword(user.getPassword());

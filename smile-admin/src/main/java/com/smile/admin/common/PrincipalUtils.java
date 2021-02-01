@@ -28,7 +28,7 @@ public class PrincipalUtils {
     public static void login(SecurityUser user) {
 
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
-        requestAttributes.setAttribute(PRINCIPAL_ID, user.getId(), RequestAttributes.SCOPE_SESSION);
+        requestAttributes.setAttribute(PRINCIPAL_ID, user.getUserId(), RequestAttributes.SCOPE_SESSION);
         requestAttributes.setAttribute(PRINCIPAL_NAME, user.getUsername(), RequestAttributes.SCOPE_SESSION);
         requestAttributes.setAttribute(PRINCIPAL_ROLES, user.getRoles(), RequestAttributes.SCOPE_SESSION);
 

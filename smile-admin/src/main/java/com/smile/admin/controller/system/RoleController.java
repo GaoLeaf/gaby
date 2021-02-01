@@ -52,6 +52,7 @@ public class RoleController {
     }
 
     @PostMapping({"add", "edit"})
+    @ResponseBody
     public BackWarnEntity saveOrUpdate(Role role) {
 
         int result = roleService.saveOrUpdate(role);
