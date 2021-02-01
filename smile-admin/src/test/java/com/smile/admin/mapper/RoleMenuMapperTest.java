@@ -49,8 +49,8 @@ public class RoleMenuMapperTest {
     @Test
     public void testSelectMenuIdsByRoleIds() {
 
-        Set<Integer> roleIds = new HashSet<>();
-        roleIds.add(1);
+        Set<String> roleIds = new HashSet<>();
+        roleIds.add("1");
 
         List<Integer> menuIds = roleMenuMapper.selectMemuIdsByRoleIds(roleIds);
 

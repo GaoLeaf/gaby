@@ -18,6 +18,6 @@ public interface MenuService {
      * @param needTree 是否需要树形化
      * @return
      */
-    List<Menu> getMenuListByRole(Set<Integer> roleIds, boolean needTree);
+    List<Menu> getMenuListByRole(Set<String> roleIds, boolean needTree);
 
 }

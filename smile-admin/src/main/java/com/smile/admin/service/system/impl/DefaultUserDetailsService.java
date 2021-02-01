@@ -3,6 +3,7 @@ package com.smile.admin.service.system.impl;
 import com.smile.admin.bean.domain.User;
 import com.smile.admin.bean.domain.UserExample;
 import com.smile.admin.bean.dto.SecurityUser;
+import com.smile.admin.common.PrincipalUtils;
 import com.smile.admin.mapper.system.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -38,7 +39,11 @@ public class DefaultUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException(username); // 用户不存在
         }
 
-        return new SecurityUser(users.get(0));
+        SecurityUser securityUser = new SecurityUser(users.get(0));
+
+        PrincipalUtils.login(securityUser);
+
+        return securityUser;
     }
 
 }

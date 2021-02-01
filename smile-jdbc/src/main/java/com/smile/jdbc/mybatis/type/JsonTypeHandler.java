@@ -1,5 +1,8 @@
 package com.smile.jdbc.mybatis.type;
 
+import com.smile.tool.json.JsonParser;
+import com.smile.tool.json.JsonSerializer;
+import com.smile.tool.lang.Strings;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 
@@ -8,8 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * @author gaowenjin
@@ -25,28 +26,26 @@ public class JsonTypeHandler extends BaseTypeHandler {
             ps.setNull(i, JdbcType.VARCHAR.TYPE_CODE);
         } else {
             // 入参不为空，将入参转成字符串
-            if (parameter instanceof Set) {
-                Set set = (Set) parameter;
-                ps.setObject(i, set.stream().collect(Collectors.joining(",", "[", "]")), JdbcType.VARCHAR.TYPE_CODE);
-            } else {
-                ps.setNull(i, JdbcType.VARCHAR.TYPE_CODE);
-            }
+            ps.setObject(i, JsonSerializer.stringify(parameter), JdbcType.VARCHAR.TYPE_CODE);
         }
     }
 
     @Override
     public Object getNullableResult(ResultSet rs, String columnName) throws SQLException {
-        return null;
+        String value = rs.getString(columnName);
+        return Strings.isEmpty(value) ? value : JsonParser.parse(value);
     }
 
     @Override
     public Object getNullableResult(ResultSet rs, int columnIndex) throws SQLException {
-        return null;
+        String value = rs.getString(columnIndex);
+        return Strings.isEmpty(value) ? value : JsonParser.parse(value);
     }
 
     @Override
     public Object getNullableResult(CallableStatement cs, int columnIndex) throws SQLException {
-        return null;
+        String value = cs.getString(columnIndex);
+        return Strings.isEmpty(value) ? value : JsonParser.parse(value);
     }
 
 }

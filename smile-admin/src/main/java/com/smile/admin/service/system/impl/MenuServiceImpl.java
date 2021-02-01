@@ -27,7 +27,7 @@ public class MenuServiceImpl implements MenuService {
     @Autowired
     private RoleMenuMapper roleMenuMapper;
 
-    public List<Menu> getMenuListByRole(Set<Integer> roleIds, boolean needTree) {
+    public List<Menu> getMenuListByRole(Set<String> roleIds, boolean needTree) {
 
         // 查询角色菜单集合
         List<Integer> menuIds = roleMenuMapper.selectMemuIdsByRoleIds(roleIds);

@@ -1,6 +1,7 @@
 package com.smile.admin.controller.system;
 
 import com.smile.admin.bean.domain.Menu;
+import com.smile.admin.common.PrincipalUtils;
 import com.smile.admin.service.system.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,9 +34,7 @@ public class MenuController {
     @GetMapping("data")
     @ResponseBody
     public List<Menu> data() {
-        Set<Integer> set = new HashSet<>();
-        set.add(1);
-        return menuService.getMenuListByRole(set, false);
+        return menuService.getMenuListByRole(PrincipalUtils.roles(), false);
     }
 
 }

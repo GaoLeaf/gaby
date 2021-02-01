@@ -8,7 +8,7 @@
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
     <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="roles" jdbcType="VARCHAR" property="roles" />
+    <result column="roles" jdbcType="VARCHAR" property="roles" typeHandler="json" />
     <result column="sex" jdbcType="CHAR" property="sex" />
     <result column="birthday" jdbcType="CHAR" property="birthday" />
     <result column="email" jdbcType="VARCHAR" property="email" />
@@ -117,7 +117,7 @@
       latest_access_time, memo)
     values (#{id,jdbcType=INTEGER}, #{ouId,jdbcType=INTEGER}, #{familyId,jdbcType=INTEGER}, 
       #{username,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{roles,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{birthday,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, 
+      #{roles,jdbcType=VARCHAR,typeHandler=json}, #{sex,jdbcType=CHAR}, #{birthday,jdbcType=CHAR}, #{email,jdbcType=VARCHAR},
       #{mobile,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{jobNumber,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{isAccNonExpired,jdbcType=BIT}, #{isAccNonLocked,jdbcType=BIT}, 
       #{status,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{latestUpdateTime,jdbcType=TIMESTAMP}, 
@@ -210,7 +210,7 @@
         #{password,jdbcType=VARCHAR},
       </if>
       <if test="roles != null">
-        #{roles,jdbcType=VARCHAR},
+        #{roles,jdbcType=VARCHAR,typeHandler=json},
       </if>
       <if test="sex != null">
         #{sex,jdbcType=CHAR},
@@ -284,7 +284,7 @@
         password = #{record.password,jdbcType=VARCHAR},
       </if>
       <if test="record.roles != null">
-        roles = #{record.roles,jdbcType=VARCHAR},
+        roles = #{record.roles,jdbcType=VARCHAR,typeHandler=json},
       </if>
       <if test="record.sex != null">
         sex = #{record.sex,jdbcType=CHAR},
@@ -341,7 +341,7 @@
       username = #{record.username,jdbcType=VARCHAR},
       nickname = #{record.nickname,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
-      roles = #{record.roles,jdbcType=VARCHAR},
+      roles = #{record.roles,jdbcType=VARCHAR,typeHandler=json},
       sex = #{record.sex,jdbcType=CHAR},
       birthday = #{record.birthday,jdbcType=CHAR},
       email = #{record.email,jdbcType=VARCHAR},

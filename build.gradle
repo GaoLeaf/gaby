@@ -27,6 +27,9 @@ project(":smile-admin") {
 
     dependencies {
 
+        compile project(":smile-tool")
+        compile project(":smile-jdbc")
+
         compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
         compile "org.springframework.boot:spring-boot-starter-thymeleaf:$springBootVersion"
         compile "org.springframework.boot:spring-boot-starter-security:$springBootVersion"
@@ -63,6 +66,8 @@ project(":smile-test") {
 project(":smile-jdbc") {
 
     dependencies {
+
+        compile project(":smile-tool")
 
         compile "org.mybatis:mybatis:3.5.4"
 

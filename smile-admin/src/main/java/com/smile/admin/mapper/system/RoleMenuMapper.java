@@ -22,7 +22,7 @@ public interface RoleMenuMapper {
     List<RoleMenu> selectByExample(RoleMenuExample example);
 
     // 查找角色已有菜单ID集合
-    List<Integer> selectMemuIdsByRoleIds(@Param("roleIds") Set<Integer> roleIds);
+    List<Integer> selectMemuIdsByRoleIds(@Param("roleIds") Set<String> roleIds);
 
     int updateByExampleSelective(@Param("record") RoleMenu record, @Param("example") RoleMenuExample example);
 

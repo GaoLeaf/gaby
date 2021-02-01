@@ -1,6 +1,7 @@
 package com.smile.admin.controller.system;
 
 import com.smile.admin.bean.dto.SecurityUser;
+import com.smile.admin.common.PrincipalUtils;
 import com.smile.admin.service.system.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,9 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -41,11 +39,7 @@ public class IndexController {
             Set<String> roles = user.getRoles();
         }
 
-        Set<Integer> set = new HashSet<>();
-        set.add(1);
-
-        //TODO menu
-        model.addAttribute("menus", menuService.getMenuListByRole(set, true));
+        model.addAttribute("menus", menuService.getMenuListByRole(PrincipalUtils.roles(), true));
 
         return "index";
     }

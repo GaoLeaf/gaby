@@ -1,6 +1,7 @@
-package com.smile.tool.util;
+package com.smile.tool.json;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 /**
  * JSON 序列化
@@ -9,9 +10,9 @@ import java.util.Collection;
  * @date 2021/1/29
  * @description:
  */
-public class JSONSerializer {
+public class JsonSerializer {
 
-    private JSONSerializer() {
+    private JsonSerializer() {
     }
 
     /**
@@ -22,10 +23,16 @@ public class JSONSerializer {
     public static String stringify(Object obj) {
 
         if (obj instanceof Collection) {
-
+            Collection<String> iterable = (Collection) obj;
+            return iterable.stream()
+                    .collect(Collectors.joining(",", "[", "]"));
         }
 
         return null;
+    }
+
+    public static void parse() {
+
     }
 
 }
