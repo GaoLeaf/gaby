@@ -181,9 +181,6 @@
   <update id="updateByExampleSelective" parameterType="map">
     update t_role
     <set>
-      <if test="record.roleId != null">
-        role_id = #{record.roleId,jdbcType=INTEGER},
-      </if>
       <if test="record.roleName != null">
         role_name = #{record.roleName,jdbcType=VARCHAR},
       </if>
@@ -192,15 +189,6 @@
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=CHAR},
-      </if>
-      <if test="record.createUserId != null">
-        create_user_id = #{record.createUserId,jdbcType=INTEGER},
-      </if>
-      <if test="record.createUserName != null">
-        create_user_name = #{record.createUserName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.modifyUserId != null">
         modify_user_id = #{record.modifyUserId,jdbcType=INTEGER},
@@ -218,13 +206,9 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update t_role
-    set role_id = #{record.roleId,jdbcType=INTEGER},
-      role_name = #{record.roleName,jdbcType=VARCHAR},
+    set role_name = #{record.roleName,jdbcType=VARCHAR},
       role_sort = #{record.roleSort,jdbcType=INTEGER},
       status = #{record.status,jdbcType=CHAR},
-      create_user_id = #{record.createUserId,jdbcType=INTEGER},
-      create_user_name = #{record.createUserName,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
       modify_user_id = #{record.modifyUserId,jdbcType=INTEGER},
       modify_user_name = #{record.modifyUserName,jdbcType=VARCHAR},
       modify_time = #{record.modifyTime,jdbcType=TIMESTAMP}

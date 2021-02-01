@@ -22,7 +22,7 @@ public class JsonParser {
         }
 
         //TODO 转为Set
-        if (json.startsWith("[")) {
+        if (json.startsWith("[")) { // 数组 & Collection
             return new HashSet<>(Arrays.asList(json.substring(1, json.length()-1).split(",")));
         }
 

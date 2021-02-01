@@ -39,7 +39,7 @@ public class IndexController {
             Set<String> roles = user.getRoles();
         }
 
-        model.addAttribute("menus", menuService.getMenuListByRole(PrincipalUtils.roles(), true));
+        model.addAttribute("menus", menuService.getMenuListByRole(PrincipalUtils.roleIds(), true));
 
         return "index";
     }

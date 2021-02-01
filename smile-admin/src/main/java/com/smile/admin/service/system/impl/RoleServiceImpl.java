@@ -1,7 +1,13 @@
 package com.smile.admin.service.system.impl;
 
+import com.smile.admin.bean.domain.Role;
+import com.smile.admin.bean.domain.RoleExample;
+import com.smile.admin.mapper.system.RoleMapper;
 import com.smile.admin.service.system.RoleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author gaowenjin
@@ -10,5 +16,29 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RoleServiceImpl implements RoleService {
+
+    @Autowired
+    private RoleMapper roleMapper;
+
+    @Override
+    public List<Role> getRoleListByIds(List<String> roleIds) {
+
+        RoleExample roleExample = new RoleExample();
+        roleExample.createCriteria().andRoleIdIn(roleIds);
+
+        return roleMapper.selectByExample(roleExample);
+    }
+
+    @Override
+    public int saveOrUpdate(Role role) {
+
+        if (role.getRoleId() == null) {
+            return roleMapper.insert(role);
+        } else {
+            RoleExample roleExample = new RoleExample();
+            return roleMapper.updateByExampleSelective(role, roleExample);
+        }
+
+    }
 
 }

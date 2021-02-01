@@ -34,7 +34,7 @@ public class MenuController {
     @GetMapping("data")
     @ResponseBody
     public List<Menu> data() {
-        return menuService.getMenuListByRole(PrincipalUtils.roles(), false);
+        return menuService.getMenuListByRole(PrincipalUtils.roleIds(), false);
     }
 
 }
