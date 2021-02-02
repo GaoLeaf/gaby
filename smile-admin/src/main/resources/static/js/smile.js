@@ -27,7 +27,7 @@
                 $("#bootstrap-tree-table").bootstrapTreeTable({
                     url: options.url,           // 请求url
                     // method: 'POST',             // 请求方式
-                    code : options.id,          // 选取记录返回的值,用于设置父子关系
+                    code : options.code,          // 选取记录返回的值,用于设置父子关系
                     parentCode : options.parentCode, // 用于设置父子关系
                     ajaxParams: {
                     },            // 请求数据的ajax的data属性
