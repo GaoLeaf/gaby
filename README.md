@@ -8,7 +8,14 @@
 
 
 
+### TODO-LIST
 
+1. JSON 序列化问题
+2. 修改页面结果提示
+3. 角色与菜单关联
+4. 菜单树形展示
+5. 用户管理 
+6. 登录界面
 
 
 
@@ -31,3 +38,5 @@
 在该项目文件夹.idea/workspace.xml中找到 <component name="PropertiesComponent">...<component>，在其中添加 `<property name="dynamic.classpath" value="true" />`
 
 2. 
+
+
