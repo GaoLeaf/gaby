@@ -91,7 +91,14 @@
                     shade: 0.4,									// 遮罩透明度
                     title, title,								// 标题
                     content: url,								// 请求url
-                    shadeClose: true
+                    shadeClose: true,                            //开启遮罩关闭
+                    btn: ["提交", "关闭"],
+                    yes: function(index, layero){ // 确定按钮回调方法
+                        //TODO
+                    },
+                    cancel: function () { // 取消和关闭按钮触发的回调
+                        return true; // 关闭窗口，若不想关闭，return false
+                    }
                 });
             },
 
@@ -164,7 +171,7 @@
 
             // 修改操作
             edit: function (id) {
-                var url = $.table._options.updateUrl.replace("{id}", id)
+                var url = $.table._options.updateUrl.replace("{id}", id);
                 $.modal.open("修改" + $.table._options.modalName, url)
             },
 
