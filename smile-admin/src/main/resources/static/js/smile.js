@@ -93,8 +93,9 @@
                     content: url,								// 请求url
                     shadeClose: true,                            //开启遮罩关闭
                     btn: ["提交", "关闭"],
-                    yes: function(index, layero){ // 确定按钮回调方法
-                        //TODO
+                    yes: function(index, layero){ // 确定按钮回调方法，layero为当前层的DOM对象
+                        var iframeWindow = layero.find('iframe')[0];
+                        iframeWindow.contentWindow.submitHandler();
                     },
                     cancel: function () { // 取消和关闭按钮触发的回调
                         return true; // 关闭窗口，若不想关闭，return false
