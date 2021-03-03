@@ -40,11 +40,11 @@ public class BackWarnEntity implements Serializable {
         return isSuccess;
     }
 
-    public String code() {
+    public String getCode() {
         return code;
     }
 
-    public String message() {
+    public String getMessage() {
         return message;
     }
 }

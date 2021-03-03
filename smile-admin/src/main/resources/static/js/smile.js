@@ -22,6 +22,7 @@
             // 刷新表格
             refresh: function() {
                 $("#bootstrap-table").bootstrapTable('refresh', {
+                    url: $.table._options.url,
                     silent: true
                 });
             }
@@ -218,7 +219,9 @@
 
             // 成功回调执行事件（父窗体静默更新）
             successCallback: function (result) {
-        	    if (result.isSuccess) {
+        	    // 操作成功
+                console.log(result)
+        	    if (result.success) {
         	        if (window.parent.$('#bootstrap-table').length > 0) {
                         $.modal.close();
                         window.parent.$.modal.msgSuccess(result.message);
@@ -227,8 +230,10 @@
                         $.modal.close();
                         window.parent.$.modal.msgSuccess(result.message);
                         window.parent.$.treetable.refresh();
+                    } else {
+                        console.log("非树...");
                     }
-                } else {
+                } else { // 操作失败
                     $.modal.alertError(result.message);
                 }
         	    // 关闭遮罩层
