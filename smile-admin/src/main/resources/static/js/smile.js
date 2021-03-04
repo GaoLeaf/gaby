@@ -18,6 +18,12 @@
                     toolbar: '#toolbar',		//指定工作栏
                     columns: options.columns    // 显示列信息
                 });
+            },
+            // 刷新表格
+            refresh: function() {
+                $("#bootstrap-table").bootstrapTable('refresh', {
+                    silent: true
+                });
             }
         },
 
@@ -27,7 +33,7 @@
                 $("#bootstrap-tree-table").bootstrapTreeTable({
                     url: options.url,           // 请求url
                     // method: 'POST',             // 请求方式
-                    code : options.id,          // 选取记录返回的值,用于设置父子关系
+                    code : options.code,          // 选取记录返回的值,用于设置父子关系
                     parentCode : options.parentCode, // 用于设置父子关系
                     ajaxParams: {
                     },            // 请求数据的ajax的data属性
@@ -91,7 +97,15 @@
                     shade: 0.4,									// 遮罩透明度
                     title, title,								// 标题
                     content: url,								// 请求url
-                    shadeClose: true
+                    shadeClose: true,                            //开启遮罩关闭
+                    btn: ["提交", "关闭"],
+                    yes: function(index, layero){ // 确定按钮回调方法，layero为当前层的DOM对象
+                        var iframeWindow = layero.find('iframe')[0];
+                        iframeWindow.contentWindow.submitHandler();
+                    },
+                    cancel: function () { // 取消和关闭按钮触发的回调
+                        return true; // 关闭窗口，若不想关闭，return false
+                    }
                 });
             },
 
@@ -119,17 +133,26 @@
                     });
             },
 
+            // 消息提示
+            msg: function (content, type) {
+                if (type == undefined) {
+                    layer.msg(content);
+                } else {
+                    layer.msg(content, { icon: $.modal.icon(type), time: 1000, shift: 5 });
+                }
+            },
+
             // 错误提示
             alertError: function (content) {
                 $.modal.msg(content, modal_status.FAIL);
             },
 
             // 成功提示
-            alertSuccess: function (content) {
+            msgSuccess: function (content) {
                 $.modal.msg(content, modal_status.SUCCESS);
             },
 
-            alertWarning: function (content) {
+            msgWarning: function (content) {
                 $.modal.msg(content, modal_status.WARNING);
             }
         },
@@ -164,7 +187,7 @@
 
             // 修改操作
             edit: function (id) {
-                var url = $.table._options.updateUrl.replace("{id}", id)
+                var url = $.table._options.updateUrl.replace("{id}", id);
                 $.modal.open("修改" + $.table._options.modalName, url)
             },
 
@@ -193,7 +216,24 @@
                 $.modal.closeLoading();
             },
 
-            //
+            // 成功回调执行事件（父窗体静默更新）
+            successCallback: function (result) {
+        	    if (result.isSuccess) {
+        	        if (window.parent.$('#bootstrap-table').length > 0) {
+                        $.modal.close();
+                        window.parent.$.modal.msgSuccess(result.message);
+                        window.parent.$.table.refresh();
+                    } else if (window.parent.$('#bootstrap-tree-table').length > 0) {
+                        $.modal.close();
+                        window.parent.$.modal.msgSuccess(result.message);
+                        window.parent.$.treetable.refresh();
+                    }
+                } else {
+                    $.modal.alertError(result.message);
+                }
+        	    // 关闭遮罩层
+        	    $.modal.closeLoading();
+            }
 
         },
 
