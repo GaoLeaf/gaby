@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -39,9 +40,18 @@ public class DefaultUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException(username); // 用户不存在
         }
 
+        User user = users.get(0);
         SecurityUser securityUser = new SecurityUser(users.get(0));
 
         PrincipalUtils.login(securityUser);
+
+        // 更新最后登录时间
+        example.createCriteria().andUserIdEqualTo(user.getUserId());
+
+        User updateUser = new User();
+        updateUser.setLatestAccessTime(new Date());
+
+        userMapper.updateByExampleSelective(updateUser, example);
 
         return securityUser;
     }

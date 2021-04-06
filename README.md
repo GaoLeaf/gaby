@@ -10,7 +10,7 @@
 ### 参考网站
 
 1. [layer](https://www.layui.com/doc/modules/layer.html)
-
+2. [bootstrap-table](https://www.bootstrap-table.com.cn/doc/api/table-options/)
 
 ### TODO-LIST
 
