@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smile.admin.mapper.account.FamilyAccountBillMapper">
+  <resultMap id="BaseResultMap" type="com.smile.admin.bean.domain.FamilyAccountBill">
+    <result column="id" jdbcType="CHAR" property="id" />
+    <result column="family_id" jdbcType="INTEGER" property="familyId" />
+    <result column="date" jdbcType="VARCHAR" property="date" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="subcategory" jdbcType="VARCHAR" property="subcategory" />
+    <result column="direction" jdbcType="VARCHAR" property="direction" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="flag" jdbcType="VARCHAR" property="flag" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, family_id, date, category, subcategory, direction, amount, flag, user_id, create_date, 
+    remark
+  </sql>
+  <select id="selectByExample" parameterType="com.smile.admin.bean.domain.FamilyAccountBillExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_family_account_bill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.smile.admin.bean.domain.FamilyAccountBillExample">
+    delete from t_family_account_bill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.smile.admin.bean.domain.FamilyAccountBill">
+    insert into t_family_account_bill (id, family_id, date, 
+      category, subcategory, direction, 
+      amount, flag, user_id, 
+      create_date, remark)
+    values (#{id,jdbcType=CHAR}, #{familyId,jdbcType=INTEGER}, #{date,jdbcType=VARCHAR}, 
+      #{category,jdbcType=VARCHAR}, #{subcategory,jdbcType=VARCHAR}, #{direction,jdbcType=VARCHAR}, 
+      #{amount,jdbcType=DECIMAL}, #{flag,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smile.admin.bean.domain.FamilyAccountBill">
+    insert into t_family_account_bill
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="familyId != null">
+        family_id,
+      </if>
+      <if test="date != null">
+        date,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="subcategory != null">
+        subcategory,
+      </if>
+      <if test="direction != null">
+        direction,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="familyId != null">
+        #{familyId,jdbcType=INTEGER},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="subcategory != null">
+        #{subcategory,jdbcType=VARCHAR},
+      </if>
+      <if test="direction != null">
+        #{direction,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.smile.admin.bean.domain.FamilyAccountBillExample" resultType="java.lang.Long">
+    select count(*) from t_family_account_bill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_family_account_bill
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=CHAR},
+      </if>
+      <if test="record.familyId != null">
+        family_id = #{record.familyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.date != null">
+        date = #{record.date,jdbcType=VARCHAR},
+      </if>
+      <if test="record.category != null">
+        category = #{record.category,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subcategory != null">
+        subcategory = #{record.subcategory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.direction != null">
+        direction = #{record.direction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null">
+        amount = #{record.amount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.flag != null">
+        flag = #{record.flag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_family_account_bill
+    set id = #{record.id,jdbcType=CHAR},
+      family_id = #{record.familyId,jdbcType=INTEGER},
+      date = #{record.date,jdbcType=VARCHAR},
+      category = #{record.category,jdbcType=VARCHAR},
+      subcategory = #{record.subcategory,jdbcType=VARCHAR},
+      direction = #{record.direction,jdbcType=VARCHAR},
+      amount = #{record.amount,jdbcType=DECIMAL},
+      flag = #{record.flag,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      remark = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="com.smile.admin.bean.domain.FamilyAccountBillExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_family_account_bill
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
