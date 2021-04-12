@@ -18,6 +18,7 @@ public class PrincipalUtils {
     }
 
     private static final String PRINCIPAL_ID = "principal.id";
+    private static final String PRINCIPAL_FAMILYID = "principal.family-id";
     private static final String PRINCIPAL_NAME = "principal.name";
     private static final String PRINCIPAL_ROLES = "principal.roles";
 
@@ -29,6 +30,7 @@ public class PrincipalUtils {
 
         RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
         requestAttributes.setAttribute(PRINCIPAL_ID, user.getUserId(), RequestAttributes.SCOPE_SESSION);
+        requestAttributes.setAttribute(PRINCIPAL_FAMILYID, user.getFamilyId(), RequestAttributes.SCOPE_SESSION);
         requestAttributes.setAttribute(PRINCIPAL_NAME, user.getUsername(), RequestAttributes.SCOPE_SESSION);
         requestAttributes.setAttribute(PRINCIPAL_ROLES, user.getRoles(), RequestAttributes.SCOPE_SESSION);
 
@@ -41,6 +43,10 @@ public class PrincipalUtils {
 
     public static String id() {
         return get(PRINCIPAL_ID, String.class);
+    }
+
+    public static String familyId() {
+        return get(PRINCIPAL_FAMILYID, String.class);
     }
 
     public static String name() {
