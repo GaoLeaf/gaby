@@ -5,52 +5,61 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class FamilyAccountBill implements Serializable {
-    private String id;
 
-    private Integer familyId;
+    private String billId;
 
-    private String date;
+    private String familyId;
+
+    private String billDate;
 
     private String category;
 
     private String subcategory;
 
-    private String direction;
+    private String direction; // 收支方向
 
     private BigDecimal amount;
 
-    private String flag;
+    private Boolean flag = false;
 
-    private Integer userId;
+    private String createUserId;
+
+    private String createUserName;
 
     private Date createDate;
+
+    private String modifyUserId;
+
+    private Date modifyTime;
+
+    private String modifyUserName;
 
     private String remark;
 
     private static final long serialVersionUID = 1L;
 
-    public String getId() {
-        return id;
+    public String getBillId() {
+        return billId;
     }
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setBillId(String billId) {
+        this.billId = billId == null ? null : billId.trim();
     }
 
-    public Integer getFamilyId() {
+    public String getFamilyId() {
         return familyId;
     }
 
-    public void setFamilyId(Integer familyId) {
-        this.familyId = familyId;
+    public void setFamilyId(String familyId) {
+        this.familyId = familyId == null ? null : familyId.trim();
     }
 
-    public String getDate() {
-        return date;
+    public String getBillDate() {
+        return billDate;
     }
 
-    public void setDate(String date) {
-        this.date = date == null ? null : date.trim();
+    public void setBillDate(String billDate) {
+        this.billDate = billDate == null ? null : billDate.trim();
     }
 
     public String getCategory() {
@@ -85,20 +94,28 @@ public class FamilyAccountBill implements Serializable {
         this.amount = amount;
     }
 
-    public String getFlag() {
+    public Boolean getFlag() {
         return flag;
     }
 
-    public void setFlag(String flag) {
-        this.flag = flag == null ? null : flag.trim();
+    public void setFlag(Boolean flag) {
+        this.flag = flag;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public String getCreateUserId() {
+        return createUserId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setCreateUserId(String createUserId) {
+        this.createUserId = createUserId == null ? null : createUserId.trim();
+    }
+
+    public String getCreateUserName() {
+        return createUserName;
+    }
+
+    public void setCreateUserName(String createUserName) {
+        this.createUserName = createUserName == null ? null : createUserName.trim();
     }
 
     public Date getCreateDate() {
@@ -107,6 +124,30 @@ public class FamilyAccountBill implements Serializable {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public String getModifyUserId() {
+        return modifyUserId;
+    }
+
+    public void setModifyUserId(String modifyUserId) {
+        this.modifyUserId = modifyUserId == null ? null : modifyUserId.trim();
+    }
+
+    public Date getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
+    }
+
+    public String getModifyUserName() {
+        return modifyUserName;
+    }
+
+    public void setModifyUserName(String modifyUserName) {
+        this.modifyUserName = modifyUserName == null ? null : modifyUserName.trim();
     }
 
     public String getRemark() {

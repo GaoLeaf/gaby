@@ -2,16 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smile.admin.mapper.account.FamilyAccountBillMapper">
   <resultMap id="BaseResultMap" type="com.smile.admin.bean.domain.FamilyAccountBill">
-    <result column="id" jdbcType="CHAR" property="id" />
-    <result column="family_id" jdbcType="INTEGER" property="familyId" />
-    <result column="date" jdbcType="VARCHAR" property="date" />
+    <result column="bill_id" jdbcType="CHAR" property="billId" />
+    <result column="family_id" jdbcType="VARCHAR" property="familyId" />
+    <result column="bill_date" jdbcType="VARCHAR" property="billDate" />
     <result column="category" jdbcType="VARCHAR" property="category" />
     <result column="subcategory" jdbcType="VARCHAR" property="subcategory" />
     <result column="direction" jdbcType="VARCHAR" property="direction" />
     <result column="amount" jdbcType="DECIMAL" property="amount" />
-    <result column="flag" jdbcType="VARCHAR" property="flag" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="flag" jdbcType="BIT" property="flag" />
+    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="modify_user_id" jdbcType="VARCHAR" property="modifyUserId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="modify_user_name" jdbcType="VARCHAR" property="modifyUserName" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -73,8 +77,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, family_id, date, category, subcategory, direction, amount, flag, user_id, create_date, 
-    remark
+    bill_id, family_id, bill_date, category, subcategory, direction, amount, flag, create_user_id, 
+    create_user_name, create_date, modify_user_id, modify_time, modify_user_name, remark
   </sql>
   <select id="selectByExample" parameterType="com.smile.admin.bean.domain.FamilyAccountBillExample" resultMap="BaseResultMap">
     select
@@ -97,26 +101,30 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.smile.admin.bean.domain.FamilyAccountBill">
-    insert into t_family_account_bill (id, family_id, date, 
+    insert into t_family_account_bill (bill_id, family_id, bill_date, 
       category, subcategory, direction, 
-      amount, flag, user_id, 
-      create_date, remark)
-    values (#{id,jdbcType=CHAR}, #{familyId,jdbcType=INTEGER}, #{date,jdbcType=VARCHAR}, 
+      amount, flag, create_user_id, 
+      create_user_name, create_date, modify_user_id, 
+      modify_time, modify_user_name, remark
+      )
+    values (#{billId,jdbcType=CHAR}, #{familyId,jdbcType=VARCHAR}, #{billDate,jdbcType=VARCHAR}, 
       #{category,jdbcType=VARCHAR}, #{subcategory,jdbcType=VARCHAR}, #{direction,jdbcType=VARCHAR}, 
-      #{amount,jdbcType=DECIMAL}, #{flag,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
-      #{createDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+      #{amount,jdbcType=DECIMAL}, #{flag,jdbcType=BIT}, #{createUserId,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{modifyUserId,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUserName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.smile.admin.bean.domain.FamilyAccountBill">
     insert into t_family_account_bill
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
+      <if test="billId != null">
+        bill_id,
       </if>
       <if test="familyId != null">
         family_id,
       </if>
-      <if test="date != null">
-        date,
+      <if test="billDate != null">
+        bill_date,
       </if>
       <if test="category != null">
         category,
@@ -133,25 +141,37 @@
       <if test="flag != null">
         flag,
       </if>
-      <if test="userId != null">
-        user_id,
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
       </if>
       <if test="createDate != null">
         create_date,
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="modifyUserName != null">
+        modify_user_name,
       </if>
       <if test="remark != null">
         remark,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=CHAR},
+      <if test="billId != null">
+        #{billId,jdbcType=CHAR},
       </if>
       <if test="familyId != null">
-        #{familyId,jdbcType=INTEGER},
+        #{familyId,jdbcType=VARCHAR},
       </if>
-      <if test="date != null">
-        #{date,jdbcType=VARCHAR},
+      <if test="billDate != null">
+        #{billDate,jdbcType=VARCHAR},
       </if>
       <if test="category != null">
         #{category,jdbcType=VARCHAR},
@@ -166,13 +186,25 @@
         #{amount,jdbcType=DECIMAL},
       </if>
       <if test="flag != null">
-        #{flag,jdbcType=VARCHAR},
+        #{flag,jdbcType=BIT},
       </if>
-      <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
       </if>
       <if test="createDate != null">
         #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserId != null">
+        #{modifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUserName != null">
+        #{modifyUserName,jdbcType=VARCHAR},
       </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
@@ -188,14 +220,11 @@
   <update id="updateByExampleSelective" parameterType="map">
     update t_family_account_bill
     <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=CHAR},
-      </if>
       <if test="record.familyId != null">
-        family_id = #{record.familyId,jdbcType=INTEGER},
+        family_id = #{record.familyId,jdbcType=VARCHAR},
       </if>
-      <if test="record.date != null">
-        date = #{record.date,jdbcType=VARCHAR},
+      <if test="record.billDate != null">
+        bill_date = #{record.billDate,jdbcType=VARCHAR},
       </if>
       <if test="record.category != null">
         category = #{record.category,jdbcType=VARCHAR},
@@ -210,13 +239,25 @@
         amount = #{record.amount,jdbcType=DECIMAL},
       </if>
       <if test="record.flag != null">
-        flag = #{record.flag,jdbcType=VARCHAR},
+        flag = #{record.flag,jdbcType=BIT},
       </if>
-      <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=INTEGER},
+      <if test="record.createUserId != null">
+        create_user_id = #{record.createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createUserName != null">
+        create_user_name = #{record.createUserName,jdbcType=VARCHAR},
       </if>
       <if test="record.createDate != null">
         create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyUserId != null">
+        modify_user_id = #{record.modifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifyTime != null">
+        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyUserName != null">
+        modify_user_name = #{record.modifyUserName,jdbcType=VARCHAR},
       </if>
       <if test="record.remark != null">
         remark = #{record.remark,jdbcType=VARCHAR},
@@ -228,16 +269,20 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update t_family_account_bill
-    set id = #{record.id,jdbcType=CHAR},
-      family_id = #{record.familyId,jdbcType=INTEGER},
-      date = #{record.date,jdbcType=VARCHAR},
+    set 
+      family_id = #{record.familyId,jdbcType=VARCHAR},
+      bill_date = #{record.billDate,jdbcType=VARCHAR},
       category = #{record.category,jdbcType=VARCHAR},
       subcategory = #{record.subcategory,jdbcType=VARCHAR},
       direction = #{record.direction,jdbcType=VARCHAR},
       amount = #{record.amount,jdbcType=DECIMAL},
-      flag = #{record.flag,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=INTEGER},
+      flag = #{record.flag,jdbcType=BIT},
+      create_user_id = #{record.createUserId,jdbcType=VARCHAR},
+      create_user_name = #{record.createUserName,jdbcType=VARCHAR},
       create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      modify_user_id = #{record.modifyUserId,jdbcType=VARCHAR},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      modify_user_name = #{record.modifyUserName,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
