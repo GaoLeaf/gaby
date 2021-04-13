@@ -18,12 +18,14 @@ public class SecurityUser extends User implements UserDetails {
     public SecurityUser(User user) {
         if (user != null) {
             this.setUserId(user.getUserId());
+            this.setFamilyId(user.getFamilyId());
             this.setUsername(user.getUsername());
             this.setNickname(user.getNickname());
             this.setPassword(user.getPassword());
             this.setRoles(user.getRoles());
             this.setIsAccNonExpired(user.getIsAccNonExpired());
             this.setIsAccNonLocked(user.getIsAccNonLocked());
+            this.setStatus(user.getStatus());
         }
     }
 
