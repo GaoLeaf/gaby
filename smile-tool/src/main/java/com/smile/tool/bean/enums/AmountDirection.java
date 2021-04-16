@@ -9,7 +9,7 @@ package com.smile.tool.bean.enums;
  */
 public enum AmountDirection {
 
-    EXPENSE("00", "支出"),
+    EXPENDITURE("00", "支出"),
     INCOME("01", "收入");
 
     private String code;

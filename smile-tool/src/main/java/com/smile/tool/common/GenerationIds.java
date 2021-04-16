@@ -30,7 +30,7 @@ public class GenerationIds {
     public static String getAccountBillGenerationIdByDateTime(String date, String userId) {
         LocalDateTime dateTime = LocalDateTime.now();
         if (date.length() == 10) {
-            dateTime.withYear(Integer.valueOf(date.substring(0, 4)))
+            dateTime = dateTime.withYear(Integer.valueOf(date.substring(0, 4)))
                     .withMonth(Integer.valueOf(date.substring(5, 7)))
                     .withDayOfMonth(Integer.valueOf(date.substring(8, 10)));
         }

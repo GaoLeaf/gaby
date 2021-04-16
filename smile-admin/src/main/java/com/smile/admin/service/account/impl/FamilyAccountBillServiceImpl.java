@@ -30,6 +30,7 @@ public class FamilyAccountBillServiceImpl implements FamilyAccountBillService {
         if (Strings.isEmpty(familyAccountBill.getBillId())) {
             familyAccountBill.setBillId(GenerationIds.getAccountBillGenerationIdByDateTime(familyAccountBill.getBillDate(),
                     PrincipalUtils.id()));
+            familyAccountBill.setFamilyId(PrincipalUtils.familyId());
             familyAccountBill.setCreateUserId(PrincipalUtils.id());
             familyAccountBill.setCreateUserName(PrincipalUtils.name());
             familyAccountBill.setCreateDate(new Date());
