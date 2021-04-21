@@ -2,11 +2,14 @@ package com.smile.admin.service.account.impl;
 
 import com.smile.admin.bean.domain.FamilyAccountBill;
 import com.smile.admin.bean.domain.FamilyAccountBillExample;
+import com.smile.admin.bean.dto.FamilyBillPage;
 import com.smile.admin.common.PrincipalUtils;
 import com.smile.admin.mapper.account.FamilyAccountBillMapper;
 import com.smile.admin.service.account.FamilyAccountBillService;
+import com.smile.tool.bean.dto.PageDataInfo;
 import com.smile.tool.common.GenerationIds;
 import com.smile.tool.lang.Strings;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,12 +54,28 @@ public class FamilyAccountBillServiceImpl implements FamilyAccountBillService {
     }
 
     @Override
-    public List<FamilyAccountBill> getFamilyBills(FamilyAccountBill familyAccountBill) {
+    public PageDataInfo<FamilyAccountBill> getFamilyBills(FamilyBillPage page) {
 
         FamilyAccountBillExample example = new FamilyAccountBillExample();
         example.createCriteria()
-                .andFamilyIdEqualTo(familyAccountBill.getFamilyId());
-        return familyAccountBillMapper.selectByExample(example);
+                .andFamilyIdEqualTo(page.getFamilyId());
+
+        List<FamilyAccountBill> familyAccountBills = familyAccountBillMapper.selectByExampleWithRowbounds(example,
+                new RowBounds(page.getPageNumber(), page.getPageSize()));
+
+        PageDataInfo<FamilyAccountBill> pageDataInfo = new PageDataInfo<>();
+        pageDataInfo.setRows(familyAccountBills);
+
+        // 如果查询集合为空，或第一页数据长度不足显示数目，不再查询总条数，减少数据库交互
+        if (familyAccountBills.isEmpty() ||
+                (page.getPageNumber() == 1 && familyAccountBills.size() < page.getPageSize())) {
+            pageDataInfo.setTotal(familyAccountBills.size());
+        } else {
+            pageDataInfo.setTotal(familyAccountBillMapper.countByExample(example));
+        }
+
+        return pageDataInfo;
+
     }
 
 }

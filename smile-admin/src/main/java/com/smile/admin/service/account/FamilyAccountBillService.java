@@ -1,6 +1,8 @@
 package com.smile.admin.service.account;
 
 import com.smile.admin.bean.domain.FamilyAccountBill;
+import com.smile.admin.bean.dto.FamilyBillPage;
+import com.smile.tool.bean.dto.PageDataInfo;
 
 import java.util.List;
 
@@ -13,6 +15,6 @@ public interface FamilyAccountBillService {
 
     int saveOrUpdate(FamilyAccountBill familyAccountBill);
 
-    List<FamilyAccountBill> getFamilyBills(FamilyAccountBill familyAccountBill);
+    PageDataInfo<FamilyAccountBill> getFamilyBills(FamilyBillPage page);
 
 }

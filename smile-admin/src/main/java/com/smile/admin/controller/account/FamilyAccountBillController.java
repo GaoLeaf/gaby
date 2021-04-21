@@ -2,9 +2,12 @@ package com.smile.admin.controller.account;
 
 import com.smile.admin.bean.domain.FamilyAccountBill;
 import com.smile.admin.bean.domain.SmileDictionary;
+import com.smile.admin.bean.dto.FamilyBillPage;
+import com.smile.admin.common.PrincipalUtils;
 import com.smile.admin.service.account.FamilyAccountBillService;
 import com.smile.admin.service.system.SmileDictionaryService;
 import com.smile.tool.bean.dto.BackWarnEntity;
+import com.smile.tool.bean.dto.PageDataInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,10 +45,9 @@ public class FamilyAccountBillController {
 
     @PostMapping("data")
     @ResponseBody
-    public List<FamilyAccountBill> data() {
-        FamilyAccountBill familyAccountBill = new FamilyAccountBill();
-        familyAccountBill.setFamilyId("1");
-        return familyAccountBillService.getFamilyBills(familyAccountBill);
+    public PageDataInfo<FamilyAccountBill> data(FamilyBillPage page) {
+        page.setFamilyId(PrincipalUtils.familyId());
+        return familyAccountBillService.getFamilyBills(page);
     }
 
     @GetMapping("add")
