@@ -12,12 +12,29 @@
             _params: {},
             init: function (options) {
                 $.table._options = options;
+                $.table._params = $.common.isEmpty(options.queryParams) ? $.table.queryParams : options.queryParams;
                 $("#bootstrap-table").bootstrapTable({
                     url: options.url,           //请求url
                     method: 'POST',             // 请求方式
+                    contentType: "application/x-www-form-urlencoded",   // 编码类型
+                    // contentType: "application/json",   // 编码类型
+                    cache: false,
+                    pagination: true,                   //是否显示分页（*）
                     toolbar: '#toolbar',		//指定工作栏
+                    sidePagination: "server",   // 启用服务端分页
+                    pageNumber: 1,              // 初始化加载，默认第一页
+                    pageSize: 10,                // 每页显示记录行数
+                    pageList: [10, 25, 50, 100], //可供选择的每页的行数（*）
+                    queryParams: $.table._params,
                     columns: options.columns    // 显示列信息
                 });
+            },
+            // 查询条件
+            queryParams: function(params) {
+                return {
+                    pageNumber: params.offset,
+                    pageSize: params.limit
+                };
             },
             // 刷新表格
             refresh: function() {
